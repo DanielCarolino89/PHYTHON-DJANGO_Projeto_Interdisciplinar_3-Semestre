@@ -1,8 +1,8 @@
 # Projeto-Interdisciplinar-3Semestre
 
-<h2>Tema: Fome
+<h1>Tema: ODS 2 - Fome Zero e Agricultura Sustentável</h1>
 
-Devemos construir um sistema para que mercados, num primeiro momento, informem a nossa plataforma os produtos que estão próximos a data de validade e estão disponíveis a "doação".
+<h2>Devemos construir um sistema para que mercados, num primeiro momento, informem a nossa plataforma os produtos que estão próximos a data de validade e estão disponíveis a "doação".
 E de outro lado, um órgão público ou autárquico, contemple esta "oferta" e agende a coleta destes alimentos.
 
 Para os varejistas é um ótimo negócio, pois não precisarão dispor de efetivo para realizar o descarte destes produtos que não serão comercializados, economizando tempo e recurso neste processo.
