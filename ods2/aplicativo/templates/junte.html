@@ -38,6 +38,14 @@
 </nav>
 <!-- navbar fim -->
 <br><br>
+<div class="form">
+    <h1>Cadastro</h1>
+    <form method="POST" action="{% url 'cadastro' %}">
+        {% csrf_token %}
+        <label for="{{form.nome.id_for_label}}">Nome:</label>
+        {{form.nome}}
+        <button type="submit">Cadastrar</button>
+    </form>
 <H1>Junte-se</H1>
   {% block content %}
   {% endblock %}

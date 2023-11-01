@@ -1,4 +1,27 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from aplicativo.forms import odsForm
+from .services .MongoConnection  import MongoConnection
+
+def cadastro(request):
+    if request.method == 'POST':
+        form = odsForm(request.POST)
+        if form.is_valid():
+            try:
+
+                nome = form.clean_nome()
+            
+            except Exception as e:
+                return HttpResponse(f'Erro: {str(e)}')
+
+            conexao = MongoConnection()
+            client = MongoConnection(conexao)
+            client.insert(nome = nome)
+            
+            return render(request, 'junte.html',{'form':odsForm()})
+
+    else:
+        return render(request, 'junte.html',{'form':odsForm()})
 
 def index(request):
     return render(request, 'index.html')
