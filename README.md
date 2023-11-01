@@ -18,6 +18,6 @@ DANIEL DE GODOY CAROLINO | [GitHub](https://github.com/DanielCarolino89) <br>
 
 ## Desenvolvimento:
 Ferramentas/Tecnologias obrigatórias para o projeto, tendo em vista cada disciplina<br>
-DES WEB III - Django<br>
-NOSql - MongoDB<br>
-Met. Ágil - Trello<br></h5>
+Desenvolvimento Web III - Django <b>Professor:</b> ORLANDO SARAIVA JÚNIOR
+Banco de Dados - Não relacional - MongoDB <b>Professor:</b> THIAGO GONÇALVES MENDES
+Gestão Ágil de Projetos de Software - Trello <b>Professor:</b> RENATO CIVIDINI MATTHIESEN</h5>
