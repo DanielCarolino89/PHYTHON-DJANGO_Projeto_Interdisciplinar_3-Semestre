@@ -1,0 +1,34 @@
+.carousel-item {
+    width: 1500px;
+}
+
+body,
+nav {
+    background-color: #FFFAFA;
+}
+
+#t1 {
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: red;
+    height: 300px;
+}
+
+#t2 {
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: red;
+    height: 300px;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+.rounded-image {
+    border-radius: 50%;
+}
+
