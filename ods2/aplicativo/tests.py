@@ -13,7 +13,6 @@ class IndexTest(TestCase):
 class odsModelsTest(TestCase):
 
     def test_criar_usuario(self):
-    
         client = MongoClient("mongodb://localhost:27017")
         db = client['odsdatabase']
         collection = db['odscliente']

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from aplicativo.forms import odsForm
-from .services .MongoConnection  import MongoConnection
+from .services.ConexaoMongoDatabase  import ConexaoBD
 
 def cadastro(request):
     if request.method == 'POST':
@@ -14,8 +14,8 @@ def cadastro(request):
             except Exception as e:
                 return HttpResponse(f'Erro: {str(e)}')
 
-            conexao = MongoConnection()
-            client = MongoConnection(conexao)
+            conexao = ConexaoBD()
+            client = ConexaoBD(conexao)
             client.insert(nome = nome)
             
             return render(request, 'junte.html',{'form':odsForm()})
