@@ -1,0 +1,277 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+	<title>PRATO SUSTENTÁVEL</title>
+	{% load bootstrap5 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<title>Layout</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			display: flex;
+			flex-wrap: wrap;
+			flex: 1 1 100vw;
+			margin: 3px;
+		}
+
+		header,
+		nav,
+		main,
+		aside,
+		footer {
+			background: #FFFAFA;
+			display: flex;
+			margin: 3px;
+			flex: 1 1 100vw;
+		}
+
+		header #logo {
+			display: flex;
+			flex: 0 1 200px;
+			background: #FFFAFA;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#openMenu,
+		#closeMenu {
+			border: none;
+			background: none;
+			font-size: 30px;
+			font-weight: bold;
+			padding: 0px 5px 0px 5px;
+			cursor: pointer;
+			display: none;
+		}
+
+		aside {
+			background-color: #ff0000;
+		}
+
+		main {
+			background-color: rgb(200, 200, 200);
+			padding: 50px;
+		}
+
+		nav {
+			justify-content: center;
+			align-items: center;
+			background-color: #ff0000;
+		}
+
+		nav a {
+			margin: 0 3%;
+			font-size: 15pt;
+			padding: 20px;
+		}
+
+		a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.card {
+			display: inline-block;
+			margin: 10px;
+		}
+
+		@media only screen and (max-width: 717px) {
+
+			#openMenu,
+			#closeMenu {
+				display: block;
+			}
+
+			#openMenu {
+				margin-left: auto;
+			}
+
+			#closeMenu {
+				position: fixed;
+				right: 15px;
+				top: 15px;
+			}
+
+			nav {
+				position: fixed;
+				flex-direction: column;
+				width: 100vw;
+				height: 100vh;
+				background: #ff0066;
+				justify-content: center;
+				align-items: center;
+				margin: 0;
+				display: none;
+				opacity: 0;
+				transition: 0.3s;
+			}
+
+			nav a {
+				margin: 3%;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.card {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="col-4 d-flex align-items-center">
+				<a href="{% url 'index' %}" id="logo">
+					<img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
+				</a>
+				<button id="openMenu" style="margin-left: 10px;">&#9776;</button>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-center">
+				<a href="{% url 'junte' %}" id="logo">
+					<img src="{% static 'img/querodoar.png' %}" width="200px">
+				</a>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-end">
+				<img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
+				<div class="align-items-center">
+					<a href="{% url 'junte' %}"><b>ENTRAR OU</b><br>
+						<b>CADASTRAR</b></a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<nav id="menu">
+
+		<button id="closeMenu">X</button>
+
+		<a href="{% url 'index' %}"><b>Principal</b></a>
+		<a href="{% url 'junte' %}"><b>Junte-se á causa</b></a>
+		<a href="{% url 'apoio' %}"><b>Solicitar apoio</b></a>
+		<a href="{% url 'parceiros' %}"><b>Parceiros</b></a>
+		<a href="{% url 'sobre' %}"><b>Sobre nós</b></a>
+	</nav>
+
+	<main>
+		
+		<div class="container">
+			<div class="row justify-content-center">
+				<h1 class="text-center">Empresas Parceiras do Prato Sustentável</h1>
+				<br><br><br>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div><br>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div><div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div><div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+
+
+
+	</main>
+
+	<br>
+	<footer class="justify-content-md-center">© 2023 PRATO SUSTENTÁVEL - Projeto integrador 3 º Semestre DSM - FATEC
+		Araras - Todos os direitos reservados.
+		<a href="https://github.com/DanielCarolino89/Projeto-Interdisciplinar-3Semestre" target="_blank"><b>&nbsp;Acesse
+				nosso GitHub</b></a>
+	</footer>
+	<script>
+		openMenu.addEventListener('click', () => {
+			menu.style.display = "flex"
+			menu.style.right = (menu.offsetWidth * -1) + 'px'
+			setTimeout(() => {
+				menu.style.opacity = '1'
+				menu.style.right = "0"
+				openMenu.style.display = 'none'
+			}, 10);
+		})
+
+		closeMenu.addEventListener('click', () => {
+			menu.style.opacity = '0'
+			menu.style.right = (menu.offsetWidth * -1) + 'px'
+			setTimeout(() => {
+				menu.removeAttribute('style')
+				openMenu.removeAttribute('style')
+			}, 200);
+		})
+	</script>
+</body>
+
+</html>
