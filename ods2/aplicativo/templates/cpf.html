@@ -56,7 +56,7 @@
         }
 
         aside {
-            background-color: #ff0066;
+            background-color: #ff0000;
         }
 
         main {
@@ -67,7 +67,7 @@
         nav {
             justify-content: center;
             align-items: center;
-            background-color: #ff0066;
+            background-color: #ff0000;
         }
 
         nav a {
@@ -104,7 +104,7 @@
                 flex-direction: column;
                 width: 100vw;
                 height: 100vh;
-                background: #ff0066;
+                background: #ff0000;
                 justify-content: center;
                 align-items: center;
                 margin: 0;
@@ -123,27 +123,27 @@
 <body>
 
     <header>
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="col-4 d-flex align-items-center">
-                <a href="{% url 'index' %}" id="logo">
-                    <img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
-                </a>
-                <button id="openMenu" style="margin-left: 10px;">&#9776;</button>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-center">
-                <a href="{% url 'junte' %}" id="logo">
-                    <img src="{% static 'img/querodoar.png' %}" width="200px">
-                </a>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-end">
-                <img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
-                <div class="align-items-center">
-                    <a href="{% url 'junte' %}"><b>ENTRAR</b></a>&nbsp;
-                    <a href="{% url 'junte' %}" id="logo"><b>CADASTRAR</b></a>
-                </div>
-            </div>
-        </div>
-    </header>
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="col-4 d-flex align-items-center">
+				<a href="{% url 'index' %}" id="logo">
+					<img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
+				</a>
+				<button id="openMenu" style="margin-left: 10px;">&#9776;</button>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-center">
+				<a href="{% url 'junte' %}" id="logo">
+					<img src="{% static 'img/querodoar.png' %}" width="200px">
+				</a>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-end">
+				<img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
+				<div class="align-items-center">
+					<a href="{% url 'junte' %}"><b>ENTRAR OU</b><br>
+					<b>CADASTRAR</b></a>
+				</div>
+			</div>
+		</div>
+	</header>
 
     <nav id="menu">
 
@@ -158,16 +158,35 @@
 
     <main>
         <div class="container">
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
                 <div class="col-md-5 text-center info d-flex justify-content-center">
-                    <img src="{% static 'img/LOGO.jpg' %}" class="img-fluid" style="border-radius: 5%;"
+                    <img src="{% static 'img/LOGO.jpg' %}" class="img-fluid" style="border: ridge 2px #ff0000; border-radius: 1%;"
                         alt="Imagem de entrega de alimentos">
                 </div>
                 <div class="col-md-6 text-center info">
                     <h4>Cadastro de Pessoa Física:</h4><br>
-                    <form action="enviar.php" method="post">
+                    <form action="{% url 'CadastroCPF' %}" method="POST">
+                        {% csrf_token %}
+                    <h5>Dados de Login:</h5>
+                    <div class="form-group">
+                        <label for="email"><b>Email</b></label>
+                        <input style="width: 400px;" type="text" id="email" name="email" required>
 
-                       
+                        <label for="password"><b>Senha</b></label>
+                        <input style="width: 400px;" type="password" id="password" name="senha" maxlength="128" required>
+
+                        <label for="confirm_password"><b>Confirme Senha</b></label>
+                        <input style="width: 400px;" type="password" id="confirm_password" name="confirm_password" required>
+                    </div><br>
+
+                        <div class="form-group">
+                            <label for="cpf"><b>CPF</b></label>
+                            <input style="width: 180px;" type="text" class="" id="cpf" name="cpf" minlength="11" maxlength="11" required>
+                            <label for="rg"><b>RG</b></label>
+                            <input style="width: 180px;" type="text" class="" id="rg" name="rg" minlength="9" maxlength="11" required>
+                            <label for="orgao"><b>Orgão expedidor</b></label>
+                            <input style="width: 50px;" type="text" class="" id="orgao" name="orgao" maxlength="3" required>
+                        </div><br>
                         <div class="form-group">
                             <label for="nome"><b>Nome completo</b></label>
                             <input style="width: 400px ;" type="text" class="" id="nome" name="nome" required>
@@ -226,21 +245,22 @@
 
                         <div class="form-group">
                             <label for="celular"><b>Telefone</b></label>
-                            <input style="width: 250px ;" type="text" class="" id="celular" name="celular" required>
+                            <input style="width: 250px ;" type="text" class="" id="celular" name="celular" maxlength="11" minlength="9"required>
 
                             <label for="telefone"><b>Celular</b></label>
-                            <input style="width: 250px ;" type="text" class="" id="telefone" name="telefone">
+                            <input style="width: 250px ;" type="text" class="" id="telefone" name="telefone"maxlength="10" minlength="8">
 
                         </div><br>
 
+
                         <div class="form-group">
-                            <label for="sobre"><b>Conte-nos em pouca palavras sobre o que voçê precisa (máximo de 200
+                            <label for="sobre"><b>Conte-nos um pouco sobre o que precisa (máximo de 200
                                     caracteres):</b></label>
                             <textarea class="form-control" id="sobre" name="sobre" maxlength="200"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label for="onde"><b>Onde nos encontrou?</b></label>
+                            <label for="encontrou"><b>Onde nos encontrou?</b></label>
                             <select class="form-control" id="encontrou" name="encontrou">
                                 <option value="amigos">Amigos</option>
                                 <option value="rede_social">Rede Social</option>
@@ -251,15 +271,15 @@
                                 <option value="nao_lembro">Não Lembro</option>
                             </select>
                         </div><br>
-
+                       
                         <div class="form-group">
                             <input type="radio" class="" id="declaracao" name="declaracao" required>
-                            <label for="html"><b>Declaro que as informações fornecidas neste formulário são
+                            <label for="declaracao"><b>Declaro que as informações fornecidas neste formulário são
                                     verdadeiras.</b></label>
                         </div><br>
 
-                        <button type="submit" class="btn btn-primary"
-                                        style="margin: 0 20px; background-color: #ff0066;">ENVIAR</button>
+                        <button type="submit" class="btn"
+                                        style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
 
                     </form>
 
@@ -277,6 +297,18 @@
                 nosso GitHub</b></a>
     </footer>
     <script>
+
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirm_password = document.getElementById("confirm_password").value;
+
+        if (password !== confirm_password) {
+            alert("As senhas não coincidem!");
+            return false; 
+        }
+
+        return true;
+    }
         openMenu.addEventListener('click', () => {
             menu.style.display = "flex"
             menu.style.right = (menu.offsetWidth * -1) + 'px'

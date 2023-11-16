@@ -10,7 +10,7 @@
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <title>Layout</title>
+    
     <style>
         * {
             margin: 0;
@@ -56,7 +56,7 @@
         }
 
         aside {
-            background-color: #ff0066;
+            background-color: #ff0000;
         }
 
         main {
@@ -67,7 +67,7 @@
         nav {
             justify-content: center;
             align-items: center;
-            background-color: #ff0066;
+            background-color: #ff0000;
         }
 
         nav a {
@@ -104,7 +104,7 @@
                 flex-direction: column;
                 width: 100vw;
                 height: 100vh;
-                background: #ff0066;
+                background: #ff0000;
                 justify-content: center;
                 align-items: center;
                 margin: 0;
@@ -123,27 +123,27 @@
 <body>
 
     <header>
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="col-4 d-flex align-items-center">
-                <a href="{% url 'index' %}" id="logo">
-                    <img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
-                </a>
-                <button id="openMenu" style="margin-left: 10px;">&#9776;</button>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-center">
-                <a href="{% url 'junte' %}" id="logo">
-                    <img src="{% static 'img/querodoar.png' %}" width="200px">
-                </a>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-end">
-                <img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
-                <div class="align-items-center">
-                    <a href="{% url 'junte' %}"><b>ENTRAR</b></a>&nbsp;
-                    <a href="{% url 'junte' %}" id="logo"><b>CADASTRAR</b></a>
-                </div>
-            </div>
-        </div>
-    </header>
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="col-4 d-flex align-items-center">
+				<a href="{% url 'index' %}" id="logo">
+					<img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
+				</a>
+				<button id="openMenu" style="margin-left: 10px;">&#9776;</button>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-center">
+				<a href="{% url 'junte' %}" id="logo">
+					<img src="{% static 'img/querodoar.png' %}" width="200px">
+				</a>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-end">
+				<img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
+				<div class="align-items-center">
+					<a href="{% url 'junte' %}"><b>ENTRAR OU</b><br>
+					<b>CADASTRAR</b></a>
+				</div>
+			</div>
+		</div>
+	</header>
 
     <nav id="menu">
 
@@ -158,8 +158,8 @@
 
     <body>
         <main>
-            <div class="container" style="margin: 80px;">
-                <div class="row justify-content-md-center">
+            <div class="container">
+                <div class="row justify-content-md-center" style="background-color:#F8F8FF;padding: 80px 0 80px 0;">
                     <div class="col-md-6 text-center">
                         <h3>Quero me cadastrar!</h3><br>
                         <p>Sua disposição em apoiar nossa missão é verdadeiramente inspiradora</p>
@@ -170,30 +170,31 @@
                         </p>
                         <br>
                         <a href="{% url 'cpf' %}">
-                            <button type="button" class="btn btn-primary" style="margin: 0 20px; background-color: #ff0066;">
+                            <button type="button" class="btn" style="margin: 0 20px;color: azure; background-color: #ff0000;">
                                 Pessoa Fisica
                             </button>
                         </a>
                         <a href="{% url 'cnpj' %}">
-                            <button type="button" class="btn btn-primary" style="margin: 0 20px; background-color: #ff0066;">
+                            <button type="button" class="btn" style="margin: 0 20px;color: azure; background-color: #ff0000;">
                                 Pessoa Juridica ou Empresa
                             </button>
                         </a>
                     </div>
                     <div class="col-md-6 text-center mx-auto">
                         <h3>Já sou cadastrado!</h3><br>
-                        <form action="" method="">
+                        <form action="{% url 'Cadastro' %}" method="POST">
+                            {% csrf_token %}
                             <div class="form-group row">
                                 <label for="usuario" class="col-md-2 col-form-label text-md-right"><b>USUÁRIO:</b></label>
                                 <div class="col-md-8">
-                                    <input type="text" id="usuario" class="form-control" name="email-address" required
+                                    <input type="text" id="usuario" class="form-control" name="usuario" required
                                         autofocus>
                                 </div>
                             </div><br>
                             <div class="form-group row">
                                 <label for="password" class="col-md-2 col-form-label text-md-right"><b>SENHA:</b></label>
                                 <div class="col-md-8">
-                                    <input type="password" id="password" class="form-control" name="password" required>
+                                    <input type="password" id="password" class="form-control" name="senha" required>
                                 </div>
                             </div><br>
                             <div class="form-group row">
@@ -207,8 +208,8 @@
                             </div><br>
                             <div class="form-group row">
                                 <div class="col-md-10 text-md-left">
-                                    <button type="submit" class="btn btn-primary"
-                                        style="margin: 0 20px; background-color: #ff0066;">ENTRAR</button>
+                                    <button type="submit" class="btn"
+                                        style="margin: 0 20px;color: azure; background-color: #ff0000;">ENTRAR</button>
                                     <a href="#" class="btn btn-link">Esqueceu sua senha?</a>
                                 </div>
                             </div>

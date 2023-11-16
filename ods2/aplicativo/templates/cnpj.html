@@ -56,7 +56,7 @@
         }
 
         aside {
-            background-color: #ff0066;
+            background-color: #ff0000;
         }
 
         main {
@@ -67,7 +67,7 @@
         nav {
             justify-content: center;
             align-items: center;
-            background-color: #ff0066;
+            background-color: #ff0000;
         }
 
         nav a {
@@ -104,7 +104,7 @@
                 flex-direction: column;
                 width: 100vw;
                 height: 100vh;
-                background: #ff0066;
+                background: #ff0000;
                 justify-content: center;
                 align-items: center;
                 margin: 0;
@@ -123,27 +123,27 @@
 <body>
 
     <header>
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="col-4 d-flex align-items-center">
-                <a href="{% url 'index' %}" id="logo">
-                    <img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
-                </a>
-                <button id="openMenu" style="margin-left: 10px;">&#9776;</button>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-center">
-                <a href="{% url 'junte' %}" id="logo">
-                    <img src="{% static 'img/querodoar.png' %}" width="200px">
-                </a>
-            </div>
-            <div class="col-4 d-flex align-items-center justify-content-end">
-                <img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
-                <div class="align-items-center">
-                    <a href="{% url 'junte' %}"><b>ENTRAR</b></a>&nbsp;
-                    <a href="{% url 'junte' %}" id="logo"><b>CADASTRAR</b></a>
-                </div>
-            </div>
-        </div>
-    </header>
+		<div class="container d-flex justify-content-between align-items-center">
+			<div class="col-4 d-flex align-items-center">
+				<a href="{% url 'index' %}" id="logo">
+					<img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
+				</a>
+				<button id="openMenu" style="margin-left: 10px;">&#9776;</button>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-center">
+				<a href="{% url 'junte' %}" id="logo">
+					<img src="{% static 'img/querodoar.png' %}" width="200px">
+				</a>
+			</div>
+			<div class="col-4 d-flex align-items-center justify-content-end">
+				<img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
+				<div class="align-items-center">
+					<a href="{% url 'junte' %}"><b>ENTRAR OU</b><br>
+					<b>CADASTRAR</b></a>
+				</div>
+			</div>
+		</div>
+	</header>
 
     <nav id="menu">
 
@@ -158,22 +158,28 @@
 
     <main>
         <div class="container">
-            <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
                 <div class="col-md-5 text-center info d-flex justify-content-center">
-                    <img src="{% static 'img/LOGO.jpg' %}" class="img-fluid" style="border-radius: 5%;"
+                    <img src="{% static 'img/LOGO.jpg' %}" class="img-fluid" style="border: ridge 2px #ff0000; border-radius: 1%;"
                         alt="Imagem de entrega de alimentos">
                 </div>
                 <div class="col-md-6 text-center info">
-                    <h4>Cadastro de Pessoa Juridica ou Empresa:</h4><br>
-                    <form action="enviar.php" method="post">
+                    <h4>Cadastro de Pessoa Juridica e Empresas:</h4><br>
+                    <form action="{% url 'CadastroCNPJ' %}" method="POST">
+                        {% csrf_token %}
 
-                       
                         <div class="form-group">
-                            <label for="nome"><b>Nome completo</b></label>
-                            <input style="width: 400px ;" type="text" class="" id="nome" name="nome" required>
+                            <label for="cnpj"><b>CNPJ</b></label>
+                            <input style="width: 180px;" type="text" class="" id="cnpj" name="cnpj" maxlength="14" minlength="14" required>
+                            <label for="empresa"><b>EMPRESA</b></label>
+                            <input style="width: 300px;" type="text" class="" id="empresa" name="empresa" required>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="responsavel"><b>Responsável</b></label>
+                            <input style="width: 230px ;" type="text" class="" id="responsavel" name="responsavel" required>
 
-                            <label for="idade"><b>Idade</b></label>
-                            <input style="width: 50px ;" type="number" class="" id="idade" name="idade" required>
+                            <label for="cargo"><b>Cargo</b></label>
+                            <input style="width: 230px ;" type="text" class="" id="cargo" name="cargo" required>
                         </div><br>
 
                         <div class="form-group">
@@ -226,15 +232,15 @@
 
                         <div class="form-group">
                             <label for="celular"><b>Telefone</b></label>
-                            <input style="width: 250px ;" type="text" class="" id="celular" name="celular" required>
+                            <input style="width: 250px ;" type="text" class="" id="celular" name="celular" maxlength="11" minlength="9" required>
 
                             <label for="telefone"><b>Celular</b></label>
-                            <input style="width: 250px ;" type="text" class="" id="telefone" name="telefone">
+                            <input style="width: 250px ;" type="text" class="" id="telefone" name="telefone" maxlength="10" minlength="8">
 
                         </div><br>
 
                         <div class="form-group">
-                            <label for="sobre"><b>Conte-nos em pouca palavras sobre o que voçê precisa (máximo de 200
+                            <label for="sobre"><b>Como gostaria de contribuir (máximo de 200
                                     caracteres):</b></label>
                             <textarea class="form-control" id="sobre" name="sobre" maxlength="200"></textarea>
                         </div>
@@ -258,8 +264,8 @@
                                     verdadeiras.</b></label>
                         </div><br>
 
-                        <button type="submit" class="btn btn-primary"
-                                        style="margin: 0 20px; background-color: #ff0066;">ENVIAR</button>
+                        <button type="submit" class="btn btn"
+                                        style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
 
                     </form>
 

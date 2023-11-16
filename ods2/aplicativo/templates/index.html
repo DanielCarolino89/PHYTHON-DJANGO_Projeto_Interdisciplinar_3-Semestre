@@ -6,129 +6,125 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" />
 	<title>PRATO SUSTENTÁVEL</title>
 	{% load bootstrap5 %}
 	{% bootstrap_css %}
 	{% bootstrap_javascript %}
-	<title>Layout</title>
 	<style>
 		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-		body {
-			display: flex;
-			flex-wrap: wrap;
-			flex: 1 1 100vw;
-			margin: 3px;
-		}
+body {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100vw;
+    margin: 3px;
+}
 
-		header,
-		nav,
-		main,
-		aside,
-		footer {
-			background: #FFFAFA;
-			display: flex;
-			margin: 3px;
-			flex: 1 1 100vw;
-		}
+header,
+nav,
+main,
+aside,
+footer {
+    background: #FFFAFA;
+    display: flex;
+    margin: 3px;
+    flex: 1 1 100vw;
+}
 
-		.flv {
-			background: #FFFAFA;
-			display: flex;
-			margin: 3px;
-			flex: 1 1 100vw;
-		}
+.flv {
+    background: #FFFAFA;
+    display: flex;
+    margin: 3px;
+    flex: 1 1 100vw;
+}
 
-		header #logo {
-			display: flex;
-			flex: 0 1 200px;
-			background: #FFFAFA;
-			justify-content: center;
-			align-items: center;
-		}
+header #logo {
+    display: flex;
+    flex: 0 1 200px;
+    background: #FFFAFA;
+    justify-content: center;
+    align-items: center;
+}
 
-		#openMenu,
-		#closeMenu {
-			border: none;
-			background: none;
-			font-size: 30px;
-			font-weight: bold;
-			padding: 0px 5px 0px 5px;
-			cursor: pointer;
-			display: none;
-		}
+#openMenu,
+#closeMenu {
+    border: none;
+    background: none;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0px 5px 0px 5px;
+    cursor: pointer;
+    display: none;
+}
 
-		aside {
-			background-color: #ff0066;
-		}
+aside {
+    background-color: #ff0000;
+}
 
-		main {
-			background-color: rgb(200, 200, 200);
-			padding: 50px;
-		}
+main {
+    background-color: rgb(200, 200, 200);
+    padding: 50px;
+}
 
-		nav {
-			justify-content: center;
-			align-items: center;
-			background-color: #ff0066;
-		}
+nav {
+    justify-content: center;
+    align-items: center;
+    background-color: #ff0000;
+}
 
-		nav a {
-			margin: 0 3%;
-			font-size: 15pt;
-			padding: 20px;
-		}
+nav a {
+    margin: 0 3%;
+    font-size: 15pt;
+    padding: 20px;
+}
 
-		a {
-			text-decoration: none;
-			color: inherit;
-		}
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
+@media only screen and (max-width: 717px) {
 
+    #openMenu,
+    #closeMenu {
+        display: block;
+    }
 
-		@media only screen and (max-width: 717px) {
+    #openMenu {
+        margin-left: auto;
+    }
 
-			#openMenu,
-			#closeMenu {
-				display: block;
-			}
+    #closeMenu {
+        position: fixed;
+        right: 15px;
+        top: 15px;
+    }
 
-			#openMenu {
-				margin-left: auto;
-			}
+    nav {
+        position: fixed;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background: #ff0000;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        display: none;
+        opacity: 0;
+        transition: 0.3s;
+    }
 
-			#closeMenu {
-				position: fixed;
-				right: 15px;
-				top: 15px;
-			}
-
-			nav {
-				position: fixed;
-				flex-direction: column;
-				width: 100vw;
-				height: 100vh;
-				background: #ff0066;
-				justify-content: center;
-				align-items: center;
-				margin: 0;
-				display: none;
-				opacity: 0;
-				transition: 0.3s;
-			}
-
-			nav a {
-				margin: 3%;
-			}
-		}
+    nav a {
+        margin: 3%;
+    }
+}
 	</style>
 </head>
-
-<body>
 
 	<header>
 		<div class="container d-flex justify-content-between align-items-center">
@@ -146,8 +142,8 @@
 			<div class="col-4 d-flex align-items-center justify-content-end">
 				<img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
 				<div class="align-items-center">
-					<a href="{% url 'junte' %}"><b>ENTRAR</b></a>&nbsp;
-					<a href="{% url 'junte' %}" id="logo"><b>CADASTRAR</b></a>
+					<a href="{% url 'junte' %}"><b>ENTRAR OU</b><br>
+					<b>CADASTRAR</b></a>
 				</div>
 			</div>
 		</div>
@@ -168,8 +164,8 @@
 
 
 	<aside>
-		<div class="container" style="margin:80px ;">
-			<div class="row justify-content-md-center">
+		<div class="container">
+            <div class="row justify-content-md-center" style="padding: 80px 0 80px 0;">
 				<div class="col-md-auto text-center">
 					<h3>12.58 milhões</h3>
 					<h5>TONELADAS DE ALIMENTOS</h5>
@@ -208,12 +204,12 @@
 					<h4>Faça sua parte hoje e faça uma doação de alimentos. Juntos, podemos alimentar a esperança!</h4>
 					<br>
 					<a href="{% url 'junte' %}">
-						<button type="button" class="btn btn-primary"
-							style="margin: 0 20px; background-color: #ff0066;">QUERO SER UM DOADOR</button>
+						<button type="button" class="btn"
+							style="margin: 0 20px;color: azure; background-color: #ff0000;">QUERO SER UM DOADOR</button>
 					</a>
 					<a href="{% url 'apoio' %}">
-						<button type="button" class="btn btn-primary"
-							style="margin: 0 20px; background-color: #ff0066;">PRECISO DE AJUDA</button>
+						<button type="button" class="btn"
+							style="margin: 0 20px;color: azure; background-color: #ff0000;">PRECISO DE AJUDA</button>
 					</a>
 				</div>
 

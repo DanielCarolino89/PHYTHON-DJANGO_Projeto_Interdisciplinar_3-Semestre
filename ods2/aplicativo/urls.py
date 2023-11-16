@@ -9,4 +9,7 @@ urlpatterns = [
     path('sobre', views.sobre, name='sobre'),
     path('cpf', views.cpf, name='cpf'),
     path('cnpj', views.cnpj, name='cnpj'),
+    path('CadastroApoio',views.CadastroApoio, name='CadastroApoio'),
+    path('CadastroCNPJ',views.CadastroCNPJ, name='CadastroCNPJ'),
+    path('CadastroCPF',views.CadastroCPF, name='CadastroCPF'),
 ]

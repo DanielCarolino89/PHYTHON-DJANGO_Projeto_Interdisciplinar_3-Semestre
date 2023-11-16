@@ -56,7 +56,7 @@
 		}
 
 		aside {
-			background-color: #ff0066;
+			background-color: #ff0000;
 		}
 
 		main {
@@ -67,7 +67,7 @@
 		nav {
 			justify-content: center;
 			align-items: center;
-			background-color: #ff0066;
+			background-color: #ff0000;
 		}
 
 		nav a {
@@ -81,6 +81,10 @@
 			color: inherit;
 		}
 
+		.card {
+			display: inline-block;
+			margin: 10px;
+		}
 
 		@media only screen and (max-width: 717px) {
 
@@ -117,6 +121,13 @@
 				margin: 3%;
 			}
 		}
+
+		@media (max-width: 768px) {
+			.card {
+				display: block;
+				margin: 0 auto;
+			}
+		}
 	</style>
 </head>
 
@@ -138,8 +149,8 @@
 			<div class="col-4 d-flex align-items-center justify-content-end">
 				<img src="{% static 'img/usuario.png' %}" width="50px" style="margin-right: 10px;">
 				<div class="align-items-center">
-					<a href="{% url 'junte' %}"><b>ENTRAR</b></a>&nbsp;
-					<a href="{% url 'junte' %}" id="logo"><b>CADASTRAR</b></a>
+					<a href="{% url 'junte' %}"><b>ENTRAR OU</b><br>
+						<b>CADASTRAR</b></a>
 				</div>
 			</div>
 		</div>
@@ -156,15 +167,83 @@
 		<a href="{% url 'sobre' %}"><b>Sobre nós</b></a>
 	</nav>
 
-	
-
-
-	<aside>
-		aside
-	</aside>
-
 	<main>
-	main
+		
+		<div class="container">
+			<div class="row justify-content-center">
+				<h1 class="text-center">Empresas Parceiras do Prato Sustentável</h1>
+				<br><br><br>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div><br>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+				<div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div><div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div><div class="card" style="width: 18rem; margin: 20px;">
+					<img src="{% static 'img/logo.jpg' %}" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Empresa Parceira</h5>
+						<p class="card-text">A empresa comprometida com a responsabilidade social, dedicou-se a uma iniciativa significativa doando alimentos essenciais.</p>
+						<a href="https://www.google.com.br/maps/preview" class="btn btn-primary stretched-link">LOCALIZAÇÃO</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+
+
+
 	</main>
 
 	<br>
