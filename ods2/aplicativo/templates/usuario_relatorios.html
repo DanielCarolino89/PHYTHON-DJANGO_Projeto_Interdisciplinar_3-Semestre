@@ -3,7 +3,7 @@
 {% load static %}
 
 <main>
-    <table class="table table-striped table-bordered table-responsive text-center">
+    <table class="table table-striped table-bordered table-responsive text-center" style="margin: 10px;">
         <tr>
             <th>
                 DIA DOADO
@@ -32,8 +32,8 @@
                 <td>{{ doacoes.peso }}</td>
                 <td>{{ doacoes.validade }}</td>
     
-                <td><a href="">Editar</a>|
-                    <a href="">Deletar</a>
+                <td><a href=""><img src="{% static 'img/editar.png' %}" width="30px" style="margin: 0 5px;" ></a>
+                    <a href=""><img src="{% static 'img/excluir.png' %}" width="30px" style="margin: 0 5px;"></a>
                 </td>
             </tr>
         {% endfor %}

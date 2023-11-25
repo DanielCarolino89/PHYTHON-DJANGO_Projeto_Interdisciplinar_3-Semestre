@@ -1,8 +1,6 @@
 from djongo import models
 
 class PessoaFisica(models.Model):
-    email = models.CharField(max_length=255)
-    senha = models.CharField(max_length=128)
     cpf = models.CharField(max_length=14)
     rg = models.CharField(max_length=10)
     orgao = models.CharField(max_length=50)
@@ -27,8 +25,6 @@ class PessoaFisica(models.Model):
         return "{} ({})".format(self.cpf, self.nome)
 
 class PessoaJuridica(models.Model):
-    email = models.CharField(max_length=255)
-    senha = models.CharField(max_length=128)
     cnpj = models.CharField(max_length=14)
     empresa = models.CharField(max_length=255)
     responsavel = models.CharField(max_length=255)

@@ -1,7 +1,27 @@
 import datetime
-from django.shortcuts import render, redirect
 from aplicativo.models import ItemsDoacao, PessoaApoio, PessoaFisica, PessoaJuridica
 from aplicativo.services.ConexaoMongoDB import CRUD_ItemsDoacao, CRUD_PessoaApoio, CRUD_PessoaFisica, CRUD_PessoaJuridica, ConexaoDATABASE, Find_Login
+
+from django.http.response import HttpResponse
+from django.shortcuts import render,redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+
+# Começo Renders
+def index(request):
+    return render(request, 'index.html')
+def junte(request):
+    return render(request, 'junte.html')
+def apoio(request):
+    return render(request, 'apoio.html')
+def parceiros(request):
+    return render(request, 'parceiros.html')
+def sobre(request):
+    return render(request, 'sobre.html')
+def cadastro_pf(request):
+    return render(request, 'cadastro_pf.html')
+def cadastro_pj(request):
+    return render(request, 'cadastro_pj.html')
 
 # Começo PessoaFisica
 def PFvisualizar(request):
@@ -9,8 +29,11 @@ def PFvisualizar(request):
     return render(request,"usuario_index.html", {"pessoas": pessoas})
 
 def PFsalvar(request):
-    email = request.POST.get("email")
-    senha = request.POST.get("senha")
+    if request.method == "GET":
+        return render(request, 'junte.html')
+    else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
     cpf = request.POST.get("cpf")
     rg = request.POST.get("rg")
     orgao = request.POST.get("orgao")
@@ -27,14 +50,18 @@ def PFsalvar(request):
     encontrou = request.POST.get("encontrou")
     declaracao = request.POST.get("declaracao")
 
-    PessoaFisica.objects.create(email=email,senha=senha,cpf=cpf,rg=rg,orgao=orgao,nome=nome,idade=idade,endereco=endereco,
+    user = User.objects.filter(username=username).first()
+    user = User.objects.create_user(username=username,password=password)
+    user.save()
+
+    PessoaFisica.objects.create(cpf=cpf,rg=rg,orgao=orgao,nome=nome,idade=idade,endereco=endereco,
                    numero=numero,bairro=bairro,cidade=cidade,estado=estado,telefone=telefone,celular=celular,
                    sobre=sobre,encontrou=encontrou,declaracao=declaracao)
     pessoas = PessoaFisica.objects.all()
 
     conexao = ConexaoDATABASE()
     colecao = CRUD_PessoaFisica(conexao)
-    colecao.insert(email=email,senha=senha,cpf=cpf,rg=rg,orgao=orgao,nome=nome,idade=idade,endereco=endereco,
+    colecao.insert(cpf=cpf,rg=rg,orgao=orgao,nome=nome,idade=idade,endereco=endereco,
                    numero=numero,bairro=bairro,cidade=cidade,estado=estado,telefone=telefone,celular=celular,
                    sobre=sobre,encontrou=encontrou,declaracao=declaracao)
     
@@ -93,8 +120,11 @@ def PJvisualizar(request):
     return render(request,"index.html", {"pessoas": pessoas})
 
 def PJsalvar(request):
-    email = request.POST.get("email")
-    senha = request.POST.get("senha")
+    if request.method == "GET":
+        return render(request, 'junte.html')
+    else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
     cnpj = request.POST.get("cnpj")
     empresa = request.POST.get("empresa")
     responsavel = request.POST.get("responsavel")
@@ -110,7 +140,11 @@ def PJsalvar(request):
     encontrou = request.POST.get("encontrou")
     declaracao = request.POST.get("declaracao")
 
-    PessoaJuridica.objects.create(email=email,senha=senha,cnpj=cnpj,empresa=empresa,responsavel=responsavel,
+    user = User.objects.filter(username=username).first()
+    user = User.objects.create_user(username=username,password=password)#is_staff
+    user.save()
+
+    PessoaJuridica.objects.create(cnpj=cnpj,empresa=empresa,responsavel=responsavel,
                                   cargo=cargo,endereco=endereco,numero=numero,bairro=bairro,cidade=cidade,
                                   estado=estado,telefone=telefone,celular=celular,sobre=sobre,encontrou=encontrou,
                                   declaracao=declaracao)
@@ -118,7 +152,7 @@ def PJsalvar(request):
 
     conexao = ConexaoDATABASE()
     colecao = CRUD_PessoaJuridica(conexao)
-    colecao.insert(email=email,senha=senha,cnpj=cnpj,empresa=empresa,responsavel=responsavel,
+    colecao.insert(cnpj=cnpj,empresa=empresa,responsavel=responsavel,
                                   cargo=cargo,endereco=endereco,numero=numero,bairro=bairro,cidade=cidade,
                                   estado=estado,telefone=telefone,celular=celular,sobre=sobre,encontrou=encontrou,
                                   declaracao=declaracao)
@@ -251,57 +285,49 @@ def Apoiosalvar(request):
     return render(request,"index.html", {"pessoas": pessoas})
 # Fim Apoio
 
-# Começo Login 
-def Login(request):
-    if request.method == 'POST':
+# # Começo Login 
+def login_view(request):
+    username = request.POST["username"]
+    password = request.POST["password"]
+    user = authenticate(request, username=username, password=password)
+    
+    if user is not None:
+        login(request, user)
         
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-
-        conexao = ConexaoDATABASE()
-        colecao = Find_Login(conexao) 
-
-        clientePF = colecao.find_one({'email': email, 'senha': senha})
-        clientePJ = colecao.find_one2({'email': email, 'senha': senha})
-
-        if clientePF or clientePJ:
-            return redirect('usuario_index')
-        else:
-            return redirect('junte')
-# Fim Login
+        return render(request, 'usuario_index.html')
+    else:
+        return HttpResponse('<h1>ERRO - Digite Email e senha novamente ou cadastre para ter acesso</h1>')
+# # Fim Login
 
 # Começo Logout
-def Logout(request):
+def logout_view(request):
+   logout(request)
    return render(request, 'index.html')
 # Fim Logout
 
-# Começo Renders
-def index(request):
-    return render(request, 'index.html')
-def junte(request):
-    return render(request, 'junte.html')
-def apoio(request):
-    return render(request, 'apoio.html')
-def parceiros(request):
-    return render(request, 'parceiros.html')
-def sobre(request):
-    return render(request, 'sobre.html')
-def cadastro_pf(request):
-    return render(request, 'cadastro_pf.html')
-def cadastro_pj(request):
-    return render(request, 'cadastro_pj.html')
-def usuario_index(request):
-    pessoas = PessoaFisica.objects.all()
-    return render(request,"usuario_index.html", {"pessoas": pessoas})
+# PARTE SISTEMA
 def base2(request):
     pessoas = PessoaFisica.objects.all()
     return render(request,"usuario_index.html", {"pessoas": pessoas})
 
+def usuario_index(request):
+    if request.user.is_authenticated:
+        pessoas = PessoaFisica.objects.all()
+        return render(request,"usuario_index.html", {"pessoas": pessoas})
+    return HttpResponse('<h1>ACESSO NEGADO!!! - Você precisa estar logado</h1>')
+
 def usuario_cad_doacao(request):
     doacao = ItemsDoacao.objects.all()
     return render(request,"usuario_cad_doacao.html", {"doacao": doacao})
+
 def usuario_relatorios(request):
     return render(request, 'usuario_relatorios.html')
+
 def usuario_att_dados(request):
     return render(request, 'usuario_att_dados.html')
 # Fim Renders
+
+def botao(request):
+    if request.user.is_authenticated:
+        return render(request,"usuario_index.html")
+    return render(request, 'junte.html')

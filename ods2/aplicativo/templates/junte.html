@@ -30,19 +30,19 @@
                 </div>
                 <div class="col-md-6 text-center mx-auto">
                     <h3>Já sou cadastrado!</h3><br>
-                    <form action="{% url 'login'%}" method="POST">
+                    <form action="{% url 'login' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group row">
-                            <label for="email" class="col-md-2 col-form-label text-md-right"><b>USUÁRIO:</b></label>
+                            <label for="email" class="col-md-2 col-form-label text-md-right"><b>EMAIL:</b></label>
                             <div class="col-md-8">
-                                <input type="email" id="email" class="form-control" name="email" required autofocus
+                                <input type="email" id="email" class="form-control" name="username" required autofocus
                                     placeholder="Insira seu email">
                             </div>
                         </div><br>
                         <div class="form-group row">
                             <label for="senha" class="col-md-2 col-form-label text-md-right"><b>SENHA:</b></label>
                             <div class="col-md-8">
-                                <input type="password" id="senha" class="form-control" name="senha"
+                                <input type="password" id="password" class="form-control" name="password"
                                     placeholder="Insira sua senha" required autofocus>
                             </div>
                         </div><br>

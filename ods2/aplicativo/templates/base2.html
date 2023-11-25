@@ -203,8 +203,10 @@
     <aside>
         <div class="text-center" style="width: 100%;">
             <div class="justify-content-center text-center">
-                <img src="{% static 'img/usuario.png' %}" style="margin-right: 10px ;padding: 10px;" width="120px">
-                <h2>BEM VINDO !</h2><br><br>
+                <img src="{% static 'img/usuario.png' %}" style="margin-right: 10px ;padding: 10px;" width="120px"><br>
+                {% if user.is_authenticated %}
+                {{ user.get_username }}
+                {% endif %}<br><br>
             </div>
             <div class="justify-content-center text-center" style="width: 100%;">
                 <a href="{% url 'usuario_index' %}" s>PRINCIPAL</a><br>

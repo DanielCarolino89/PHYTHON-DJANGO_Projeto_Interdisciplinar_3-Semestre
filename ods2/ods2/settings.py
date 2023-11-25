@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db' #criar seção (sessions)
+
 ROOT_URLCONF = 'ods2.urls'
 
 TEMPLATES = [

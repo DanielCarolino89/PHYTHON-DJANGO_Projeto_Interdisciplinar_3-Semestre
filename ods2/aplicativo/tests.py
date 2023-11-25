@@ -34,3 +34,5 @@ class odsModelsTest(TestCase):
         collection = client['odsdatabase']['odscliente']
         documents = collection.find()
         self.assertEqual(documents.count(), 1)
+
+        
