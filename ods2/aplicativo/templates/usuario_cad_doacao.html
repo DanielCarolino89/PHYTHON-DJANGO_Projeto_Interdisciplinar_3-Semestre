@@ -1,0 +1,44 @@
+{% extends 'base2.html' %}
+{% block conteudo %}
+{% load static %}
+
+<main>
+    
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6 info">
+                <form action="{% url 'dcsalvar' %}" method="POST">
+                    {% csrf_token %}
+                    <hr><br>
+                    <h4 class="text-center">Cadastrar de Itens para doação:</h4><br>
+                    <div class="form-group">
+                        <label for="dia"><b>Data:</b> </label>
+                            <input type="text" id="dia" name="dia" value="{% now 'd-m-Y' %}" required></input>
+                       
+                    </div><br>
+                    <div class="form-group">
+                        <label for="item"><b>NOME DO ITEM:</b></label>
+                        <input  style="width: 573px;" type="text" id="item" name="item" placeholder=" Alimento,Frutas,Verduras ou Legumes" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="quantidade"><b>QUANTIDADE</b></label>
+                        <input style="width: 93px;" type="number" id="quantidade" name="quantidade" placeholder="0" >
+
+                        <label for="peso"><b>PESO</b></label>
+                        <input style="width: 93px;" type="number" id="peso" name="peso" placeholder="00.00">
+                    
+                        <label for="validade"><b>VALIDADE</b></label>
+                        <input style="width: auto;" type="date" class="" id="validade" name="validade" required>
+                    </div><br>
+                    
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn"
+                            style="margin: 0 20px;color: azure; background-color: #ff0000;">CADASTRAR</button>
+                    </div><br>
+                    <hr>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
