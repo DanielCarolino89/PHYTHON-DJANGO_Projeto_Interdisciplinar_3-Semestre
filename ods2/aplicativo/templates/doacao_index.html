@@ -1,0 +1,59 @@
+{% extends 'base2.html' %}
+{% block conteudo %}
+{% load static %}
+<main>
+	<div id="form1">
+		<form class="row g-1 align-items-center d-flex text-center" action="{% url 'dcsalvar' %}" method="POST">
+			{%csrf_token %}
+			<h3>Cadastro de alimentos a ser doados:</h3>
+			<div class="col-md-3 mb-4">
+				<label class="form-label">Produto</label>
+				<input type="text" class="form-control" name="item" required>
+			</div>
+			<div class="col-md-3 mb-4">
+				<label class="form-label">Quantidade ou peso</label>
+				<div class="input-group">
+					<input type="number" class="form-control" name="quantidade" required>
+					<select id="medida" name="medida" name="medida" class="form-select" required>
+						<option value="unidade">Unidade</option>
+						<option value="kilograma">Kilograma</option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3 mb-4">
+				<label class="form-label">Data de validade</label>
+				<input type="date" class="form-control" name="validade" required>
+			</div>
+			<div class="col-md-3">
+				<button type="submit" class="btn btn-danger">CADASTRAR</button>
+			</div>
+
+		</form>
+		<br>
+		<hr><br>
+		<table class="text-center align-items-center">
+			<tr>
+				<th>ID</th>
+				<th>PRODUTO</th>
+				<th>QUANTIDADE</th>
+				<th>VALIDADE</th>
+				<th>OPÇÃO</th>
+			</tr>
+			{% for doacoes in doacoes %}
+			<tr>
+				<td>{{ doacoes.id }}</td>
+				<td>{{ doacoes.item }}</td>
+				<td>{{ doacoes.quantidade }} {{ doacoes.medida }}</td>
+				<td>{{ doacoes.validade }}</td>
+
+				<td><a href="{% url 'doacao_editar' doacoes.id %}"><img src="{% static 'img/editar.png' %}" width="30px"
+							style="margin: 0 5px;"></a>
+					<a href="{% url 'dcdelete' doacoes.id %}"><img src="{% static 'img/excluir.png' %}" width="30px"
+							style="margin: 0 5px;"></a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</main>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base2.html' %}
+{% block conteudo %}
+{% load static %}
+    
+    <main>
+        <div id="form1">
+            <form class="row g-1 align-items-center d-flex text-center" action="{% url 'doacao_update' doacoes.id %}" method="POST">
+                <br>
+                <h4 style="color: red;">Descricão do Item:</h4>
+                <h5 style="color: red;">Produto: {{ doacoes.item }} <br> Quantidade: {{ doacoes.quantidade}} {{ doacoes.medida }} <br>Válidade: {{ doacoes.validade }} <br></h5>
+                <br><br><hr><br>
+                {%csrf_token %}
+                <h3>Alteração de dados do alimento a ser doado</h3>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label">Produto</label>
+                    <input type="text" class="form-control" name="item" value="{{ doacoes.item }}">
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label">Quantidade ou peso</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="quantidade" value="{{ doacoes.quantidade }}" >
+                        <select id="medida" name="medida" name="medida" class="form-select" required>
+                            <option value="unidade">Unidade</option>
+                            <option value="kilograma">Kilograma</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label class="form-label">Data de validade</label>
+                    <input type="date" class="form-control" name="validade" value="{{ doacoes.validade }}">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-danger">ALTERAR</button>
+                </div>
+
+            </form>
+            <br>
+            <hr><br>
+        </div>
+    </main>
+
+{% endblock %}

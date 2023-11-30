@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" />
+    <title>PRATO SUSTENTÁVEL</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        @charset "UTF-8";
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1 1 100vw;
+            margin: 3px;
+        }
+
+
+        header,
+        nav,
+        main,
+        aside,
+        footer {
+            background: #f5b0b0;
+            display: flex;
+            margin: 3px;
+        }
+
+        /* Seletores para formatação individual. */
+
+        header {
+            flex: 1 1 100vw;
+            text-align: center;
+            align-items: center;
+            background: #FFFAFA;
+        }
+
+        header #logo {
+            display: flex;
+            flex: 0 1 200px;
+            background: #FFFAFA;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #openMenu,
+        #closeMenu {
+
+            border: none;
+            background: none;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 0px 5px 0px 5px;
+            cursor: pointer;
+            display: none;
+
+        }
+
+        nav {
+
+            /* /* justify-content: center; */
+            align-items: center;
+            flex-direction: column;
+            flex: 1 1 200px;
+        }
+
+        nav a {
+            margin: 3%;
+            font-size: 15pt;
+            margin: 25px 0;
+        }
+
+        main {
+            flex: 20 1 500px;
+        }
+
+        aside {
+            flex: 1 1 100vw;
+        }
+
+        footer {
+            flex: 1 1 100vw;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+
+        }
+
+        a:hover {
+            color: darkorange;
+            font-size: 22px;
+            text-shadow: 0 0 10px black;
+        }
+
+        #form1 {
+            border: outset 5px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-left: 40px;
+            margin-right: 40px;
+            background: #fffafa;
+        }
+
+        #table1 {
+            border: outset 5px;
+            padding: 20px;
+            margin-top: 30px;
+            margin-left: 40px;
+            margin-right: 40px;
+            background: #fffafa;
+        }
+
+
+        tr,
+        th,
+        td {
+            border: outset 3px darkgrey;
+            width: 100vw;
+            align-items: center;
+            text-align: center;
+            background-color: #fffafa;
+        }
+
+        @media only screen and (max-width: 717px) {
+
+            #openMenu,
+            #closeMenu {
+                display: block;
+            }
+
+            #openMenu {
+                margin-left: auto;
+            }
+
+            #closeMenu {
+
+                position: fixed;
+                right: 15px;
+                top: 15px;
+            }
+
+            nav {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.8);
+                align-items: center;
+                justify-content: center;
+                margin: 0;
+                display: none;
+                opacity: 0;
+                transition: 0.3s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="col-4 d-flex align-items-center">
+                <a href="{% url 'doacao_index' %}" id="logo">
+                    <img src="{% static 'img/logo.jpg' %}" style="border-radius: 50%;" width="120px">
+                </a>
+
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-center">
+                {% if request.user.is_authenticated %}
+                <h4>{{ request.user.username }}</h4>
+                {% endif %}
+            </div>
+            <div class="col-4 d-flex align-items-center justify-content-end">
+                <img src="" width="50px" style="margin-right: 10px;">
+                <div class="align-items-center">
+                    <a href="{% url 'logout' %}"><button class="btn btn-danger"
+                            style="margin-left: 500px;">SAIR</button></a>
+                </div>
+            </div>
+        </div>
+        <button id="openMenu" style="margin-left: 10px;">&#9776;</button>
+    </header>
+
+    <nav id="menu">
+
+        <button id="closeMenu">X</button>
+
+        <a href="{% url 'doacao_index' %}"><b>Cadastrar Doação</b></a>
+        <a href="{% url 'doacao_info' %}"><b>Informações Pessoais</b></a>
+        <a href="{% url 'doacao_relatorio' %}"><b>Relatório</b></a>
+        <a href="{% url 'doacao_suporte' %}"><b>Suporte</b></a>
+    </nav>
+
+    {% block conteudo %}
+    {% endblock %}
+
+    <footer class="justify-content-md-center">© 2023 PRATO SUSTENTÁVEL - Projeto integrador 3 º Semestre DSM - FATEC
+        Araras - Todos os direitos reservados.
+        <a href="https://github.com/DanielCarolino89/Projeto-Interdisciplinar-3Semestre" target="_blank"><b>&nbsp;Acesse
+                nosso GitHub</b></a>
+    </footer>
+
+</body>
+
+<script type="text/javascript" src="assets/js/script.js">
+    openMenu.addEventListener('click', () => {
+        menu.style.display = "flex"
+        menu.style.right = (menu.offsetWidth * -1) + 'px'
+        setTimeout(() => {
+            menu.style.opacity = '1'
+            menu.style.right = "0"
+            openMenu.style.display = 'none'
+        }, 10);
+    })
+    closeMenu.addEventListener('click', () => {
+        menu.style.opacity = '0'
+        menu.style.right = (menu.offsetWidth * -1) + 'px'
+        setTimeout(() => {
+            menu.removeAttribute('style')
+            openMenu.removeAttribute('style')
+        }, 200);
+    })
+    openMenu.addEventListener('click', () => {
+
+        menu.style.display = "flex"
+        menu.style.right = (menu.offsetWidth * -1) + 'px'
+
+        setTimeout(() => {
+            menu.style.opacity = '1'
+            menu.style.right = "0"
+
+            openMenu.style.display = 'none'
+        }, 10);
+    })
+
+    closeMenu.addEventListener('click', () => {
+
+        menu.style.opacity = '0'
+        menu.style.right = (menu.offsetWidth * -1) + 'px'
+
+        setTimeout(() => {
+            menu.removeAttribute('style')
+            openMenu.removeAttribute('style')
+        }, 200);
+    })
+
+
+    var dataAtual = new Date();
+    var formatoData = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    var dataFormatada = dataAtual.toLocaleDateString('pt-BR', formatoData);
+    document.getElementById('data').innerText = dataFormatada;
+
+</script>

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+{% load static %}
+<img src="{% static 'img/carrossel2.png' %}" width="100%" height="auto" style="margin: 3px;" object-fit="cover">
+<aside>
+	<div class="container">
+		<div class="row justify-content-md-center" style="padding: 80px 0 80px 0;">
+			<div class="col-md-auto text-center">
+				<h3>12.58 milhões</h3>
+				<h5>TONELADAS DE ALIMENTOS</h5>
+				<h5>SÃO DESPERDIÇADOS POR ANO NO BRASIL.</h5>
+			</div>
+			<div class="col-md-auto text-center">
+				<h3>125.2 milhões</h3>
+				<h5> DE BRASILEIROS ESTÃO EM SITUAÇÃO</h5>
+				<h5> DE INSEGURANÇA ALIMENTAR</h5>
+			</div>
+			<div class="col-md-auto text-center">
+				<h3>60 kg</h3>
+				<h5> DE COMIDA SÃO DESPERDIÇADAS</h5>
+				<h5>POR CADA BRASILEIRO POR ANO.</h5>
+			</div>
+		</div>
+	</div>
+</aside>
+
+<main>
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col-md-6 text-center info">
+
+				<h3>Você pode fazer a diferença!</h3>
+				<br>
+				<p>Em um mundo onde milhões de pessoas lutam diariamente contra a fome e a insegurança alimentar,
+					cada
+					gesto solidário conta. Sua doação de alimentos pode ser a chave para trazer conforto e esperança
+					para famílias inteiras. Imagine o impacto positivo que você pode ter na vida de alguém ao
+					oferecer
+					um gesto de bondade simples, mas poderoso. Cada alimento doado é mais do que uma refeição; é um
+					ato
+					de compaixão que pode mudar vidas.</p>
+				<br>
+				<h4>Faça sua parte hoje e faça uma doação de alimentos. Juntos, podemos alimentar a esperança!</h4>
+				<br>
+				<a href="{% url 'junte' %}">
+					<button type="button" class="btn"
+						style="margin: 0 20px;color: azure; background-color: #ff0000;">QUERO SER UM DOADOR</button>
+				</a>
+				<a href="{% url 'apoio' %}">
+					<button type="button" class="btn"
+						style="margin: 0 20px;color: azure; background-color: #ff0000;">PRECISO DE AJUDA</button>
+				</a>
+			</div>
+
+			<div class="col-md-6 text-center info d-flex justify-content-center">
+				<img src="{% static 'img/entrega.jpg' %}" class="img-fluid" style="border-radius: 5%;"
+					alt="Imagem de entrega de alimentos">
+			</div>
+		</div>
+	</div>
+</main>
+<br>
+<div class="flv row justify-content-center">
+
+	<div class="text-center" style="margin: 20px;">
+		<h3>Frutas, Verduras e Legumes: Também podem ser doados!</h3><br>
+		<h5>
+			"Ajude a reduzir o desperdício doando verduras e legumes frescos
+			<br> perto da validade para aqueles que mais precisam.
+			<br> Sua contribuição pode garantir refeições saudáveis e promover a saúde para todos."
+		</h5>
+	</div>
+	<div class="col-md-4">
+		<figure class="text-center">
+			<img src="{% static 'img/verdura1.jpg' %}" class="rounded" style="width: 100%; height: 350px;"
+				alt="Verdura 1">
+
+		</figure>
+	</div>
+	<div class="col-md-4">
+		<figure class="text-center">
+			<img src="{% static 'img/verdura2.jpg' %}" class="rounded" style="width: 100%; height: 350px;"
+				alt="Verdura 2">
+
+		</figure>
+	</div>
+	<div class="col-md-4">
+		<figure class="text-center">
+			<img src="{% static 'img/verdura3.png' %}" class="rounded" style="width: 100%; height: 350px;"
+				alt="Verdura 3">
+
+		</figure>
+	</div>
+</div>
+{% endblock %}

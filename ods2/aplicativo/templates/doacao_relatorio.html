@@ -1,0 +1,43 @@
+{% extends 'base2.html' %}
+{% block conteudo %}
+<main>
+    <div id="form1" class="row">
+        <div class="row g-1 align-items-center d-flex text-center">
+            <h1>RELATÓRIO DE DOAÇÕES</h1>
+            <h3><br>TOTAL DE DOAÇÕES: {{ total_doacoes }}</h3><br>
+            <h3>MÉDIA DE DOAÇÕES: {{ valor_medio}}</h3>
+        </div>
+        <br>
+        <hr><br>
+        <div class="row">
+        <form class="row g-1 align-items-center d-flex text-center" action="{% url 'doacao_relatorio' %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-3 mb-4">
+                <br>
+                <h3>Consultar produto:</h3>
+            </div>
+            <div class="col-md-2 mb-4">
+                <br> <select name="item" class="form-control">
+                    {% for doacao in doacoes %}
+                    <option value="{{ doacao.item }}">{{ doacao.item }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-1 mb-4">
+                <br> <button type="submit" class="btn btn-danger">Consultar</button>
+            </div>
+        </form>
+
+
+        <h3>Doações do mesmo produto: {{ doacoes_por_item }}</h3>
+        <h3>Quantidade total de doações mesmo produto: {{ quantidade_total }}</h3>
+        
+        <br>
+        <hr><br>
+       
+        
+   
+    </div>
+</main>
+
+{% endblock %}quantidade_item
