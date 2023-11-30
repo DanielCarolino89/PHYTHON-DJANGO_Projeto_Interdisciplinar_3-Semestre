@@ -3,7 +3,6 @@
 <h3>Tema: ODS 2 - Fome Zero e Agricultura Sustentável</h3>
 
 ## Equipe:
-ALEXANDRE SORZA DURAES | [GitHub](https://github.com/sorza) <br>
 CARLA CRISTINA JUSTINO PEREIRA DA SILVA | [GitHub](https://github.com/cahjustino) <br>
 CARLOS ARMINDO DEGASPERI | [GitHub](https://github.com/CarlosDegasperi) <br>
 CHIARA MANEO | [GitHub](https://github.com/ChiaraManeo) <br>
