@@ -1,0 +1,37 @@
+{% extends 'base2.html' %}
+{% block conteudo %}
+{% load static %}
+<style>
+    .a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 40px;
+    }
+
+    .a:hover {
+        color: red;
+        font-size: 40px;
+        text-shadow: none;
+    }
+</style>
+<main>
+    <div class="container">
+        <div id="form1" class="row flex-column justify-content-center">
+            <div class="col-md-15 mb-4">
+                <a class="a" href="">© PRATO SUSTENTÁVEL</a>
+            </div>
+            <div class="col-md-15 mb-4">
+                <a class="a" href="https://maps.app.goo.gl/ZzK3geE5vUHH8snv9"> Jardim Jose Ometto II, Araras - SP,
+                    13606-360</a>
+
+            </div>
+            <div class="col-md-15 mb-4">
+                <a class="a" href="mailto:contato@pratosustentavel.com.br">contato@pratosustentavel.com.br</a>
+            </div>
+            <div class="col-md-15 mb-4">
+                <a class="a" href="https://wa.me/5519996300297">SAC: 19 99630-0297 </a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

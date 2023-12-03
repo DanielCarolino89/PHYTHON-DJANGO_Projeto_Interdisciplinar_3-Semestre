@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+{% load static %}
+
+<main>
+    <div class="container">
+        <div class="row justify-content-md-center" style="background-color:#F8F8FF; padding: 80px 0 80px 0;">
+
+            <div class="col-md-6 info">
+
+                <div class="form-group text-center">
+                    <img src="{% static 'img/icone-pessoa-fisica.png' %}" alt="Ícone de pessoa física"
+                        style="display: inline-block; width: 150px;">
+                    <h2 style="display: inline-block; margin-left: 10px;">Cadastro de Pessoa Física:</h2>
+                </div>
+
+                <form action="{% url 'pfsalvar' %}" method="POST">
+                    {% csrf_token %}
+                    <hr>
+                    <h4 class="text-center">Dados de Login:</h4><br>
+                    <div class="form-group">
+                        <label for="username"><b>Nickname</b></label>
+                        <input style="width: 537px;" type="text" id="username" name="username" required>
+
+                    </div><br>
+                    <div class="form-group">
+                        <label for="username"><b>email</b></label>
+                        <input style="width: 573px;" type="email" id="email" name="email" required>
+
+                    </div><br>
+                    <div class="form-group">
+                        <label for="password"><b>Senha</b></label>
+                        <input style="width: 220px;" type="password" id="password" name="password" maxlength="128"
+                            required>
+
+                        <label for="confirm_password"><b>Confirme Senha</b></label>
+                        <input style="width: 220px;" type="password" id="confirm_password" name="confirm_password"
+                            required>
+                    </div><br>
+                    <hr>
+                    <h4 class="text-center">Dados de Usuário:</h4><br>
+                    <div class="form-group">
+                        <label for="cpf"><b>CPF</b></label>
+                        <input style="width: 180px;" type="text" class="" id="cpf" name="cpf" minlength="11"
+                            maxlength="11" required>
+                        <label for="rg"><b>RG</b></label>
+                        <input style="width: 180px;" type="text" class="" id="rg" name="rg" minlength="9" maxlength="11"
+                            required>
+                        <label for="orgao"><b>Orgão expedidor</b></label>
+                        <input style="width: 60px;" type="text" class="" id="orgao" name="orgao" maxlength="3" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="nome"><b>Nome completo</b></label>
+                        <input style="width: 393px ;" type="text" class="" id="nome" name="nome" required>
+
+                        <label for="idade"><b>Idade</b></label>
+                        <input style="width: 50px ;" type="number" class="" id="idade" name="idade" required>
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="endereco"><b>Endereço</b></label>
+                        <input style="width: 400px ;" type="text" class="" id="endereco" name="endereco" required>
+
+                        <label for="numero"><b>Número</b></label>
+                        <input style="width: 75px ;" type="number" class="" id="numero" name="numero" required>
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="bairro"><b>Bairro</b></label>
+                        <input style="width: 200px ;" type="text" class="" id="bairro" name="bairro" required>
+
+                        <label for="cidade"><b>Cidade</b></label>
+                        <input style="width: 200px ;" type="text" class="" id="cidade" name="cidade" required>
+
+                        <label for="estado"><b>Estado</b></label>
+                        <select style="width: 50px ;" type="text" class="" id="estado" name="estado" required>
+                            <option value=""></option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                        </select>
+                    </div><br>
+
+                    <div class="form-group">
+                        <label for="celular"><b>Telefone</b></label>
+                        <input style="width: 245px ;" type="tel" class="" id="celular" name="celular" maxlength="11"
+                            minlength="9" required>
+
+                        <label for="telefone"><b>Celular</b></label>
+                        <input style="width: 245px ;" type="tel" class="" id="telefone" name="telefone" maxlength="10"
+                            minlength="8">
+
+                    </div><br>
+
+
+                    <div class="form-group text-center">
+                        <label for="sobre"><b>Conte-nos um pouco como pode ajudar (máximo de 200
+                                caracteres):</b></label>
+                        <textarea style="width: 623px;" class="form-control" id="sobre" name="sobre"
+                            maxlength="200"></textarea>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="encontrou"><b>Onde nos encontrou?</b></label>
+                        <select style="width: 623px;" class="form-control" id="encontrou" name="encontrou">
+                            <option value="amigos">Amigos</option>
+                            <option value="rede_social">Rede Social</option>
+                            <option value="busca_online">Busca Online</option>
+                            <option value="outro_site">Outro Site</option>
+                            <option value="evento">Evento</option>
+                            <option value="publicidade">Publicidade</option>
+                            <option value="nao_lembro">Não Lembro</option>
+                        </select>
+                    </div><br>
+
+                    <div class="form-group">
+                        <input type="radio" class="" id="declaracao" name="declaracao" required>
+                        <label for="declaracao"><b>Declaro que as informações fornecidas neste formulário são
+                                verdadeiras.</b></label>
+                    </div><br>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn"
+                            style="margin: 0 20px;color: azure; background-color: #ff0000;">ENVIAR</button>
+                    </div>
+                </form>
+
+            </div>
+
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}

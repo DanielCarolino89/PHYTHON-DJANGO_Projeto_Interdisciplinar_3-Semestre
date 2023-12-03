@@ -1,0 +1,9 @@
+Data do pedido:30-11-2023
+CPF:34553453453	RG:43343434343
+Nome:qweqweqw	Idade:43
+Endereço:ave	nº24	Bairro:saude
+Cidade:111111	Estado:RN
+Telefone:2222222222	Celular:44444444444
+Renda:22222	Nº Pessoas2222
+Sobre:2222
+Encontrou:outro_site	Declaração:on

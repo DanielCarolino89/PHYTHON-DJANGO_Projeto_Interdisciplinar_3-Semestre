@@ -1,0 +1,82 @@
+{% extends 'base2.html' %}
+{% block conteudo %}
+{% load static %}
+<style>
+    .infor {
+        border: none;
+    }
+</style>
+<main>
+    <div id="form1">
+        <center>
+            <H1>INFORMAÇÕES PESSSOAIS</H1>
+
+            <br>
+            <hr><br>
+
+            <h3>Alterar Login:</h3>
+        </center><br>
+        <table class="text-center align-items-center">
+            {% for user in user %}
+            <tr class="infor">
+                <th class="infor">
+                    <h4>NICKNAME: {{ user.username }}</h4>
+                </th>
+                <th class="infor">
+                    <h4>EMAIL: {{ user.email }}</h4>
+                </th>
+                <th class="infor">
+                    <h4>SENHA: *****</h4>
+                </th>
+                <th class="infor"><a href="{% url 'usuario_alterar' user.id %}"><img src="{% static 'img/editar.png' %}"
+                            width="30px" style="margin: 0 5px;">ALTERAR</a></th>
+            </tr>
+        </table>
+        {% endfor %}
+        <br>
+        <hr><br>
+        <center>
+            <h3>Alterar Dados Pessoais:</h3>
+        </center><br>
+        <table class="text-center align-items-center">
+            {% for pessoas in pessoas %}
+            <tr class="infor">
+                <th class="infor">
+                    <h4>NOME: {{ pessoas.nome }}</h4>
+                </th>
+                <th class="infor">
+                    <h4>CIDADE: {{ pessoas.cidade }}</h4>
+                </th>
+                <th class="infor">
+                    <h4>ESTADO: {{ pessoas.estado }}</h4>
+                </th>
+                <th class="infor"><a href="{% url 'pfeditar' pessoas.id %}"><img src="{% static 'img/editar.png' %}"
+                            width="30px" style="margin: 0 5px;">ALTERAR</a></th>
+            </tr>
+            {% endfor %}
+
+        </table>
+        <br>
+        <hr><br>
+        <center>
+            <h3>Excluir Dados Pessoais:</h3>
+        </center><br>
+        <table class="text-center align-items-center">
+            {% for pessoas in pessoas %}
+            <tr class="infor">
+                
+                <th class="infor">
+                    <h4>Deseja excluir definitivamente a conta? </h4>
+                </th>
+                
+                <th class="infor"><a href="{% url 'pfdelete' pessoas.id %}"><img src="{% static 'img/excluir.png' %}"
+                            width="30px" style="margin: 0 5px;">DELETAR</a></th>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <br>
+    <hr><br>
+</main>
+{% endblock %}
