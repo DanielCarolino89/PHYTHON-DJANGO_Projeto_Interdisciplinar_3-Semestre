@@ -6,6 +6,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.hashers import make_password
 
 # Começo Renders
 def index(request):
@@ -76,7 +77,7 @@ def PFeditar(request,id):
     pessoas = PessoaCadastro.objects.get(id=id)
     return render(request,"pfupdate.html", {"pessoas": pessoas})
 
-def PFupdate(request,id):
+def PFupdate(request, id):
     nome = request.POST.get("nome")
     endereco = request.POST.get("endereco")
     numero = request.POST.get("numero")
@@ -85,21 +86,21 @@ def PFupdate(request,id):
     estado = request.POST.get("estado")
     telefone = request.POST.get("telefone")
     celular = request.POST.get("celular")
-    pessoas = PessoaCadastro.objects.get(id=id)
-    pessoas.nome=nome,
-    pessoas.endereco=endereco,
-    pessoas.numero=numero,
-    pessoas.bairro=bairro,
-    pessoas.cidade=cidade,
-    pessoas.estado=estado,
-    pessoas.telefone=telefone,
-    pessoas.celular=celular
-    pessoas.save()
+
+    pessoa = PessoaCadastro.objects.get(id=id)
+    pessoa.nome = nome
+    pessoa.endereco = endereco
+    pessoa.numero = numero
+    pessoa.bairro = bairro
+    pessoa.cidade = cidade
+    pessoa.estado = estado
+    pessoa.telefone = telefone
+    pessoa.celular = celular
+    pessoa.save()
 
     conexao = ConexaoDATABASE()
     colecao = CRUD_PessoaCadastro(conexao)
-    colecao.update(nome=nome,endereco=endereco,
-                   numero=numero,bairro=bairro,cidade=cidade,estado=estado,telefone=telefone,celular=celular)
+    colecao.update(id=id, nome=nome, endereco=endereco, numero=numero, bairro=bairro, cidade=cidade, estado=estado, telefone=telefone, celular=celular)
 
     return redirect('doacao_info')
 
@@ -113,8 +114,6 @@ def PFdelete(request,id):
         conexao = ConexaoDATABASE()
         colecao = CRUD_PessoaCadastro(conexao)
         colecao.delete()
-
-        
 
         return redirect('index')
 # Fim PessoaCadastro
@@ -145,23 +144,24 @@ def DCeditar(request,id):
     doacoes = ItemsDoacao.objects.get(id=id)
     return render(request,"doacao_editar.html", {"doacoes": doacoes})
 
-def DCupdate(request,id):
+def DCupdate(request, id):
     item = request.POST.get("item")
     quantidade = request.POST.get("quantidade")
     medida = request.POST.get("medida")
     validade = request.POST.get("validade")
-    doacoes = ItemsDoacao.objects.get(id=id)
-    doacoes.item=item,
-    doacoes.quantidade=quantidade,
-    doacoes.medida=medida,
-    doacoes.validade=validade
-    doacoes.save()
+
+    doacao = ItemsDoacao.objects.get(id=id)
+    doacao.item = item
+    doacao.quantidade = quantidade
+    doacao.medida = medida
+    doacao.validade = validade
+    doacao.save()
 
     conexao = ConexaoDATABASE()
     colecao = CRUD_ItemsDoacao(conexao)
-    colecao.update(item=item,quantidade=quantidade,medida=medida,validade=validade)
+    colecao.update(id=id, item=item, quantidade=quantidade, medida=medida, validade=validade)
 
-    return redirect('doacao_index') 
+    return redirect('doacao_index')
 
 def DCdelete(request,id):
     doacoes = ItemsDoacao.objects.get(id=id)
@@ -258,21 +258,22 @@ def usuario_alterar(request,id):
 
 def usuario_editar(request, id):
     if request.method == 'POST':
-        user = get_object_or_404(User, id=id)
-        username = request.POST.get("username")
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+        new_username = request.POST.get('username')
+        new_email = request.POST.get('email')
+        new_password = request.POST.get('password')
 
-        user.username = username
-        user.email = email
-        user.set_password(password)
-        user.save()
+    user = User.objects.get(id=id)
+    user.username = new_username
+    user.email = new_email
+    user.set_password(new_password)
+    user.save()
 
-        conexao = ConexaoDATABASE()  
-        colecao = CRUD_PessoaCadastro(conexao)  
-        colecao.update(username=username, email=email, password=password)
+    conexao = ConexaoDATABASE()
+    colecao = CRUD_PessoaCadastro(conexao)
+    colecao.update(id=id, username=new_username, email=new_email, password=new_password)
 
-        return render(request, "index.html", {"user": user})
+    return redirect("logout")
+
 
 def botao(request):
     if request.user.is_authenticated:

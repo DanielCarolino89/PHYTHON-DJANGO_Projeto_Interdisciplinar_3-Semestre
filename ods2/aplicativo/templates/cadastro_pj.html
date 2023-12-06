@@ -8,11 +8,12 @@
 
             <div class="col-md-6 info">
 
-                <div class="form-group text-center">
-                    <img src="{% static 'img/icone-pessoa-juridica.png' %}" alt="Ícone de pessoa física"
-                        style="display: inline-block; width: 150px;">
-                    <h2 style="display: inline-block; margin-left: 10px;">Cadastro de Pessoa Física:</h2>
+                <div class="form-group text-center d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/icone-pessoa-juridica.png' %}" alt="Ícone de pessoa jurídica"
+                        style="width: 150px;">
+                    <h2 style="display: inline-block; margin-left: 10px;">Cadastro de Pessoa <br> Jurídica ou Empresa:</h2>
                 </div>
+                
 
                 <form action="{% url 'pfsalvar' %}" method="POST">
                     {% csrf_token %}

@@ -32,6 +32,6 @@ urlpatterns = [
     path('doacao_relatorio',views.doacao_relatorio,name='doacao_relatorio'),
 
     path('usuario_alterar/<int:id>',views.usuario_alterar,name='usuario_alterar'),
-    path('usuario_alterar/<int:id>',views.usuario_editar,name='usuario_editar'),
+    path('usuario_editar/<int:id>',views.usuario_editar,name='usuario_editar'),
 ]
 

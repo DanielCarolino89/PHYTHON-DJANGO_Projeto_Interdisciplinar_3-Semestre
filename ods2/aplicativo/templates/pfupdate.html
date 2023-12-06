@@ -16,14 +16,14 @@
             <h4 class="text-center">Dados de Usuário:</h4>
             <div class="form-group">
                 <label for="nome"><b><br>Nome completo</b></label>
-                <input style="width: 500px ;" type="text" value="{{ pessoas.nome }}">
+                <input style="width: 500px ;" type="text" name="nome" value="{{ pessoas.nome }}">
                 </div><br><br>
                 <div class="form-group">
                     <label for="endereco"><b>Endereço</b></label>
                     <input style="width: 423px ;" type="text" name="endereco" value="{{ pessoas.endereco }}">
 
                     <label for="numero"><b>Número</b></label>
-                    <input style="width: 60px ;" type="text" name="numero" placeholder="{{ pessoas.numero }}">
+                    <input style="width: 60px ;" type="text" name="numero" value="{{ pessoas.numero }}" required>
                 </div><br><br>
 
                 <div class="form-group">
@@ -34,7 +34,7 @@
                     <input style="width: 204px ;" type="text" name="cidade" value="{{ pessoas.cidade }}">
 
                     <label for="estado"><b>Estado</b></label>
-                    <select style="width: 50px ;" type="text" name="estado" value="{{ pessoas.estado }}">
+                    <select style="width: 50px ;" type="text" name="estado" required>
                         <option value=""></option>
                         <option value="AC">AC</option>
                         <option value="AL">AL</option>
