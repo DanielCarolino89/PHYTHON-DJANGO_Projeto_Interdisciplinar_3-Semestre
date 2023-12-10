@@ -151,16 +151,43 @@ class Consultas:
         self.db = self.client['odsdatabase']
 
     def Total_doacoes(self):
-        collection = self.db['cd_ItemsDoacao']
-        total_doacoes = collection.count_documents({})  
-        return total_doacoes 
-    
-    def doacoes_por_item(self, item):
-        collection = self.db['cd_ItemsDoacao']
-        doacoes_item = collection.count_documents({'item': item})
-        return doacoes_item
+    collection = self.db['cd_ItemsDoacao']
 
-    def quantidade_total_por_item(self, item):
+    pipeline = [
+        {
+            '$group': {
+                '_id': None,
+                'totalDoacoes': {'$sum': 1}
+            }
+        }
+    ]
+
+    result = next(collection.aggregate(pipeline), None)
+    total_doacoes = result['totalDoacoes'] if result else 0
+
+    return total_doacoes
+
+def doacoes_por_item(self, item):
+    collection = self.db['cd_ItemsDoacao']
+
+    pipeline = [
+        {
+            '$match': {'item': item}
+        },
+        {
+            '$group': {
+                '_id': None,
+                'doacoesItem': {'$sum': 1}
+            }
+        }
+    ]
+
+    result = next(collection.aggregate(pipeline), None)
+    doacoes_item = result['doacoesItem'] if result else 0
+
+    return doacoes_item
+
+def quantidade_total_por_item(self, item):
         collection = self.db['cd_ItemsDoacao']
         cursor = collection.aggregate([
             {
@@ -185,12 +212,23 @@ class Consultas:
         result = next(cursor, None)
         return result['totalQuantidade'] if result else 0
 
-    def valor_medio_total(self):
-        collection = self.db['cd_ItemsDoacao']
-        total_doacoes = collection.count_documents({})
-        porcentagem_doacoes = total_doacoes * 0.10 if total_doacoes > 0 else 0
 
-        return porcentagem_doacoes
+def porcentagem_total_doacoes(self):
+    collection = self.db['cd_ItemsDoacao']
+
+    pipeline = [
+        {
+            '$group': {
+                '_id': None,
+                'totalDoacoes': {'$sum': 1}
+            }
+        }
+    ]
+
+    result = next(collection.aggregate(pipeline), None)
+    total_doacoes = result['totalDoacoes'] if result else 0
+
+    porcentagem_doacoes = total_doacoes * 0.10 if total_doacoes > 0 else 0
 
 
     
