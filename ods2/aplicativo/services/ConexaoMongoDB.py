@@ -150,7 +150,7 @@ class Consultas:
         self.client = connection.getConnection()
         self.db = self.client['odsdatabase']
 
-    def Total_doacoes(self):
+def Total_doacoes(self):
     collection = self.db['cd_ItemsDoacao']
 
     pipeline = [
